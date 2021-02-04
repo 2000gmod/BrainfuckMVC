@@ -2,7 +2,7 @@ CC = gcc
 
 CFLAGS = -Wall
 
-TARGET = bfmvmc
+TARGET = bfmvc
 
 compile:
 	$(CC) $(CFLAGS) -o $(TARGET) src/*.c
