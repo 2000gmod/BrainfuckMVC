@@ -1,6 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "compiler.h"
 
 int main(){
-    printf("Hola\n");
+    FILE* inFile = fopen("./examples/helloworld.bf", "r");
+
+    checkSyntax(inFile);
     return 1;
 }

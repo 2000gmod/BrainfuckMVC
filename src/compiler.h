@@ -3,7 +3,7 @@
 INITIALIZE WITH:
 
     POINTER ADDRESS (dPTR): A000
-    POINTER CONTENT (PTR): 00 00
+    POINTER CONTENT (PTR): C0 00
 
     ON B000:
         00
@@ -13,14 +13,14 @@ INITIALIZE WITH:
 INSTRUCTION TRANSLATION:
 
 +:
-    DIR - 10: MOV [DIR + 1] [dPTR]
-    DIR - 5 : MOV [DIR + 2] [dPTR + 1]
-    DIR: ADD [PTR] [0B01]
+    DIR: MOV [DIR + 11] [dPTR]
+    DIR + 5 : MOV [DIR + 12] [dPTR + 1]
+    DIR + 10: ADD [PTR] [0B01]
 
 -:
-    DIR - 10: MOV [DIR + 1] [dPTR]
-    DIR - 5 : MOV [DIR + 2] [dPTR + 1]
-    DIR: SUB [PTR] [0B01]
+    DIR: MOV [DIR + 11] [dPTR]
+    DIR + 5 : MOV [DIR + 12] [dPTR + 1]
+    DIR + 10: SUB [PTR] [0B01]
 
 
 >:
@@ -29,4 +29,24 @@ INSTRUCTION TRANSLATION:
 <:
     DIR: SUBC 2 [dPTR] [0B00]
 
+[:
+    L11: JMZ [L12] [dPTR]
+
+]:
+    L12: JNT [L11] [dPTR]
+
+.: 
+    DIR: MOV [DIR + 11] [dPTR]
+    DIR + 5 : MOV [DIR + 12] [dPTR + 1]
+    DIR + 10: PRINT [PTR]
 */
+
+#ifndef COMPILER_H
+#define COMPILER_H
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void checkSyntax(FILE* file);
+
+#endif
