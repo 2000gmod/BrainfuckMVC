@@ -47,6 +47,18 @@ INSTRUCTION TRANSLATION:
 #include <stdio.h>
 #include <stdlib.h>
 
-void checkSyntax(FILE* file);
+enum bfInstructionLength {
+    bfPlus = 15,
+    bfMinus = 15,
+    bfLeft = 6,
+    bfRight = 6,
+    bfBracketL = 5,
+    bfBracketR = 5,
+    bfPrint = 13
+};
+
+void checkSyntax(FILE* fileIn);
+void compile(FILE* fileIn, FILE* fileOut);
+char getNthByte(int input, int n);
 
 #endif

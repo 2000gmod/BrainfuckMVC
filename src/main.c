@@ -6,7 +6,12 @@
 
 int main(){
     FILE* inFile = fopen("./examples/helloworld.bf", "r");
+    FILE* outFile = fopen("./examples/helloworld.vx", "w");
 
     checkSyntax(inFile);
+    compile(inFile, outFile);
+    
+    fclose(inFile);
+    fclose(outFile);
     return 1;
 }
