@@ -8,6 +8,10 @@ int main(){
     FILE* inFile = fopen("./examples/helloworld.bf", "r");
     FILE* outFile = fopen("./examples/helloworld.vx", "w");
 
+    if (inFile == NULL){
+        return -1;
+    }
+
     checkSyntax(inFile);
     compile(inFile, outFile);
     

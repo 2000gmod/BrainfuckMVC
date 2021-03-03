@@ -15,19 +15,19 @@ INSTRUCTION TRANSLATION:
 +:
     DIR: MOV [DIR + 11] [dPTR]
     DIR + 5 : MOV [DIR + 12] [dPTR + 1]
-    DIR + 10: ADD [PTR] [0B01]
+    DIR + 10: ADD [PTR] [B001]
 
 -:
     DIR: MOV [DIR + 11] [dPTR]
     DIR + 5 : MOV [DIR + 12] [dPTR + 1]
-    DIR + 10: SUB [PTR] [0B01]
+    DIR + 10: SUB [PTR] [B001]
 
 
 >:
-    DIR: ADDC 2 [dPTR] [0B00]
+    DIR: ADDC 2 [dPTR] [B000]
 
 <:
-    DIR: SUBC 2 [dPTR] [0B00]
+    DIR: SUBC 2 [dPTR] [B000]
 
 [:
     L11: JMZ [L12] [dPTR]
@@ -46,19 +46,20 @@ INSTRUCTION TRANSLATION:
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 enum bfInstructionLength {
-    bfPlus = 15,
-    bfMinus = 15,
-    bfLeft = 6,
-    bfRight = 6,
-    bfBracketL = 5,
-    bfBracketR = 5,
+    bfAddSub = 15,
+    bfPointerMove = 6,
+    bfBrackets = 5,
     bfPrint = 13
 };
 
 void checkSyntax(FILE* fileIn);
 void compile(FILE* fileIn, FILE* fileOut);
 char getNthByte(int input, int n);
+
+int getAddressOfMatchingOpening(int currentAddress, FILE* fileIn, int currentFilePointer);
+int getAddressOfMatchingClosing(int currentAddress, FILE* fileIn, int currentFilePointer);
 
 #endif
